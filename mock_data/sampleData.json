@@ -1,0 +1,110 @@
+[
+	{
+		"distance": "0.44",
+		"cab_type": "Lyft",
+		"time_stamp": "1544952607890",
+		"destination": "North Station",
+		"source": "Haymarket Square",
+		"price": "5",
+		"surge_multiplier": "1",
+		"id": "424553bb-7174-41ea-aeb4-fe06d4f4b9d7",
+		"product_id": "lyft_line",
+		"name": "Shared"
+	},
+	{
+		"distance": "0.44",
+		"cab_type": "Lyft",
+		"time_stamp": "1543284023677",
+		"destination": "North Station",
+		"source": "Haymarket Square",
+		"price": "11",
+		"surge_multiplier": "1",
+		"id": "4bd23055-6827-41c6-b23b-3c491f24e74d",
+		"product_id": "lyft_premier",
+		"name": "Lux"
+	},
+	{
+		"distance": "0.44",
+		"cab_type": "Lyft",
+		"time_stamp": "1543366822198",
+		"destination": "North Station",
+		"source": "Haymarket Square",
+		"price": "7",
+		"surge_multiplier": "1",
+		"id": "981a3613-77af-4620-a42a-0c0866077d1e",
+		"product_id": "lyft",
+		"name": "Lyft"
+	},
+	{
+		"distance": "0.44",
+		"cab_type": "Lyft",
+		"time_stamp": "1543553582749",
+		"destination": "North Station",
+		"source": "Haymarket Square",
+		"price": "26",
+		"surge_multiplier": "1",
+		"id": "c2d88af2-d278-4bfd-a8d0-29ca77cc5512",
+		"product_id": "lyft_luxsuv",
+		"name": "Lux Black XL"
+	},
+	{
+		"distance": "0.44",
+		"cab_type": "Lyft",
+		"time_stamp": "1543463360223",
+		"destination": "North Station",
+		"source": "Haymarket Square",
+		"price": "9",
+		"surge_multiplier": "1",
+		"id": "e0126e1f-8ca9-4f2e-82b3-50505a09db9a",
+		"product_id": "lyft_plus",
+		"name": "Lyft XL"
+	},
+	{
+		"distance": "0.44",
+		"cab_type": "Lyft",
+		"time_stamp": "1545071112138",
+		"destination": "North Station",
+		"source": "Haymarket Square",
+		"price": "16.5",
+		"surge_multiplier": "1",
+		"id": "f6f6d7e4-3e18-4922-a5f5-181cdd3fa6f2",
+		"product_id": "lyft_lux",
+		"name": "Lux Black"
+	},
+	{
+		"distance": "1.08",
+		"cab_type": "Lyft",
+		"time_stamp": "1543208580200",
+		"destination": "Northeastern University",
+		"source": "Back Bay",
+		"price": "10.5",
+		"surge_multiplier": "1",
+		"id": "462816a3-820d-408b-8549-0b39e82f65ac",
+		"product_id": "lyft_plus",
+		"name": "Lyft XL"
+	},
+	{
+		"distance": "1.08",
+		"cab_type": "Lyft",
+		"time_stamp": "1543780384677",
+		"destination": "Northeastern University",
+		"source": "Back Bay",
+		"price": "16.5",
+		"surge_multiplier": "1",
+		"id": "474d6376-bc59-4ec9-bf57-4e6d6faeb165",
+		"product_id": "lyft_lux",
+		"name": "Lux Black"
+	},
+	{
+		"distance": "1.08",
+		"cab_type": "Lyft",
+		"time_stamp": "1543818482645",
+		"destination": "Northeastern University",
+		"source": "Back Bay",
+		"price": "3",
+		"surge_multiplier": "1",
+		"id": "4f9fee41-fde3-4767-bbf1-a00e108701fb",
+		"product_id": "lyft_line",
+		"name": "Shared"
+	}
+]
