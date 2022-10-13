@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "name": "Data Preprocessing",
+        "detail": "Extract the data from an existing excel file and clean the data",
+        "priority": "medium",
+        "status": "completed",
+        "timeline": {
+            "assign_date": "2022-09-01",
+            "due_date": "2022-09-15",
+            "last_updated": "2022-09-04"
+        },
+        "user_id": 1
+    },
+    {
+        "id": 2,
+        "name": "Data Training & Data Testing",
+        "detail": "Use a specific Machine Learning model to train the data and test the data",
+        "priority": "high",
+        "status": "in review",
+        "timeline": {
+            "assign_date": "2022-09-15",
+            "due_date": "2022-10-01",
+            "last_updated": "2022-09-18"
+        },
+        "user_id": 1
+    },
+    {
+        "id": 3,
+        "name": "Data Visualization",
+        "detail": "Using different graphs the visualization and conclude the result from them",
+        "priority": "low",
+        "status": "in progress",
+        "timeline": {
+            "assign_date": "2022-10-01",
+            "due_date": "2022-10-15",
+            "last_updated": "2022-10-04"
+        },
+        "user_id": 1
+    },
+    {
+        "id": 4,
+        "name": "UI Developing",
+        "detail": "Develop the UI of shopping website",
+        "priority": "medium",
+        "status": "in progress",
+        "timeline": {
+            "assign_date": "2022-10-01",
+            "due_date": "2022-10-15",
+            "last_updated": "2022-10-08"
+        },
+        "user_id": 2
+    },
+    {
+        "id": 5,
+        "name": "Backend Developing",
+        "detail": "Develop the Backend of shopping website",
+        "priority": "high",
+        "status": "assigned",
+        "timeline": {
+            "assign_date": "2022-10-01",
+            "due_date": "2022-10-15",
+            "last_updated": "2022-10-04"
+        },
+        "user_id": 3
+    },
+    {
+        "id": 6,
+        "name": "UI Developing",
+        "detail": "Develop the UI of social media mobile app",
+        "priority": "high",
+        "status": "in review",
+        "timeline": {
+            "assign_date": "2022-10-01",
+            "due_date": "2022-10-15",
+            "last_updated": "2022-10-09"
+        },
+        "user_id": 4
+    },
+    {
+        "id": 7,
+        "name": "Backend Developing",
+        "detail": "Develop the Backend of social media mobile app",
+        "priority": "low",
+        "status": "in progress",
+        "timeline": {
+            "assign_date": "2022-10-01",
+            "due_date": "2022-10-15",
+            "last_updated": "2022-10-14"
+        },
+        "user_id": 5
+    }
+]
