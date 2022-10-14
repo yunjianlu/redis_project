@@ -24,12 +24,10 @@ async function fetchApiData() {
 
   async function heavy_compute() {
     const dataset =  require("../taskApp/api/mock_data/rides2.json")
-    // let data = dataset.toString()
-    console.log(typeof(dataset))
+    // sum represnets a heavy computation job, like AI training or data analytics 
     sum = 0
-    for(i=2;i<10000000; i++){
-        sum = sum + i**i/(i-1)
-    }
+    for(i=2;i<10000000; i++){sum = sum + i*i/(i-1)}
+    console.log(sum)
     return dataset;
   }
 
