@@ -8,16 +8,18 @@ const orders = require("../../../mock_data/orders.json");
 
 // Yunjian Lu (Peter)
 const fetchApiData = async () => {
-  const apiResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos`);
+  const apiResponse = await axios.get(
+    `https://jsonplaceholder.typicode.com/photos`);
   console.log("Request sent to the API");
   return apiResponse.data;
 };
 
 
 const heavy_compute = async () => {
-  // sum represents a heavy computation job, like AI training or data analytics
+  // sum represents a heavy computation job, 
+  // like AI training or data analytics
   sum = 0;
-  for (i = 2; i < 10000000; i++) {sum = sum + (i * i) / (i - 1);}
+  for(i = 2; i < 10000000; i++){sum = sum + (i * i)/(i - 1);}
   console.log(sum);
   return orders;
 };
@@ -35,7 +37,8 @@ router.get("/time", async (req, res) => {
       console.log("cached");
       results = JSON.parse(cacheResults);
     } 
-    // If not in th Redis, go and get the data, then put it into redis before respons to client
+    // If not in th Redis, go and get the data, 
+    // then put it into redis before respons to client
     else {
       results = await heavy_compute();
       // results = await fetchApiData();
