@@ -2,7 +2,6 @@ const express = require("express")
 const axios = require("axios")
 const cors = require("cors")
 const redis = require("redis")
-
 const app = express()
 app.use(cors())
 
@@ -23,6 +22,18 @@ async function fetchApiData() {
     return apiResponse.data;
   }
 
+  async function heavy_compute() {
+    const dataset =  require("../taskApp/api/mock_data/rides2.json")
+    // let data = dataset.toString()
+    console.log(typeof(dataset))
+    sum = 0
+    for(i=2;i<10000000; i++){
+        sum = sum + i**i/(i-1)
+    }
+    return dataset;
+  }
+
+
 app.get("/photos", async(req, res)=>{
     let results;
     try {
@@ -31,7 +42,8 @@ app.get("/photos", async(req, res)=>{
             console.log("cached")
             results = JSON.parse(cacheResults);
         }else{
-            results = await fetchApiData();
+            results = await heavy_compute()
+            // results = await fetchApiData();
             await redisClient.set("photos", JSON.stringify(results));
         }
         
