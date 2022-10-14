@@ -6,35 +6,37 @@ const axios = require("axios");
 const orders = require("../../../mock_data/orders.json");
 //const client = redis.createClient();
 
-// Peter
+// Yunjian Lu (Peter)
 const fetchApiData = async () => {
-  const apiResponse = await axios.get(
-    `https://jsonplaceholder.typicode.com/photos`
-  );
+  const apiResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos`);
   console.log("Request sent to the API");
   return apiResponse.data;
 };
 
+
 const heavy_compute = async () => {
   // sum represents a heavy computation job, like AI training or data analytics
   sum = 0;
-  for (i = 2; i < 10000000; i++) {
-    sum = sum + (i * i) / (i - 1);
-  }
+  for (i = 2; i < 10000000; i++) {sum = sum + (i * i) / (i - 1);}
   console.log(sum);
   return orders;
 };
+
 
 router.get("/time", async (req, res) => {
   const client = redis.createClient();
   await client.connect();
   let results;
+
   try {
     const cacheResults = await client.get("orders");
+    // If the data is in Redis, retrive it
     if (cacheResults) {
       console.log("cached");
       results = JSON.parse(cacheResults);
-    } else {
+    } 
+    // If not in th Redis, go and get the data, then put it into redis before respons to client
+    else {
       results = await heavy_compute();
       // results = await fetchApiData();
       await client.set("orders", JSON.stringify(results));
@@ -45,15 +47,6 @@ router.get("/time", async (req, res) => {
     console.error(error);
     res.status(404).send("Data unavailable");
   }
-  // try {
-  //   await client.connect();
-  //   const serverTime = await client.time();
-  //   console.log(serverTime);
-  //   res.json({ time: serverTime });
-  //   await client.quit();
-  // } catch (error) {
-  //   console.log(error);
-  // }
 });
 
 // Andy
