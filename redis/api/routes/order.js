@@ -6,34 +6,77 @@ const axios = require("axios");
 const orders = require("../../../mock_data/orders.json");
 //const client = redis.createClient();
 
-const DEFAULT_EXPIRATION = 3600;
+// Peter
+const fetchApiData = async () => {
+  const apiResponse = await axios.get(
+    `https://jsonplaceholder.typicode.com/photos`
+  );
+  console.log("Request sent to the API");
+  return apiResponse.data;
+};
+
+const heavy_compute = async () => {
+  // sum represents a heavy computation job, like AI training or data analytics
+  sum = 0;
+  for (i = 2; i < 10000000; i++) {
+    sum = sum + (i * i) / (i - 1);
+  }
+  console.log(sum);
+  return orders;
+};
 
 router.get("/time", async (req, res) => {
+  const client = redis.createClient();
+  await client.connect();
+  let results;
   try {
-    await client.connect();
-    const serverTime = await client.time();
-    console.log(serverTime);
-    res.json({ time: serverTime });
-    await client.quit();
+    const cacheResults = await client.get("orders");
+    if (cacheResults) {
+      console.log("cached");
+      results = JSON.parse(cacheResults);
+    } else {
+      results = await heavy_compute();
+      // results = await fetchApiData();
+      await client.set("orders", JSON.stringify(results));
+    }
+
+    res.json(results);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(404).send("Data unavailable");
   }
+  // try {
+  //   await client.connect();
+  //   const serverTime = await client.time();
+  //   console.log(serverTime);
+  //   res.json({ time: serverTime });
+  //   await client.quit();
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
+// Andy
 router.get("/acl", async (req, res) => {
   try {
     const client = redis.createClient({
       url: "redis://alan:alanpassword@127.0.0.1:6379",
     });
     await client.connect();
+
+    // const serverTime = await client.time();
+    // console.log(serverTime);
+    // console.log(await client.ACL_USERS());
+
     if (!(await client.get("order_detail"))) {
       await client.set("order_detail", JSON.stringify(orders), { EX: 3600 });
     }
-    res.json({ order: await client.get("order_detail") });
-    // This will error as this user is not allowed to run this command...
-    console.log(
-      `Response from GET command: ${await client.get("order_detail")}`
-    );
+    orderDetail = await client.get("order_detail");
+    results = JSON.parse(orderDetail);
+    res.json({ order: results });
+    // console.log(
+    //   `Response from GET command: ${await client.get("order_detail")}`
+    // );
 
     await client.quit();
   } catch (error) {
@@ -41,6 +84,7 @@ router.get("/acl", async (req, res) => {
   }
 });
 
+// Saiyang
 router.get("/script", async (req, res) => {
   const client = redis.createClient({
     scripts: {
