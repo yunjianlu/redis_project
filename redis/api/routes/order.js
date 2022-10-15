@@ -9,21 +9,22 @@ const orders = require("../../../mock_data/orders.json");
 // Yunjian Lu (Peter)
 const fetchApiData = async () => {
   const apiResponse = await axios.get(
-    `https://jsonplaceholder.typicode.com/photos`);
+    `https://jsonplaceholder.typicode.com/photos`
+  );
   console.log("Request sent to the API");
   return apiResponse.data;
 };
 
-
 const heavy_compute = async () => {
-  // sum represents a heavy computation job, 
+  // sum represents a heavy computation job,
   // like AI training or data analytics
   sum = 0;
-  for(i = 2; i < 10000000; i++){sum = sum + (i * i)/(i - 1);}
+  for (i = 2; i < 10000000; i++) {
+    sum = sum + (i * i) / (i - 1);
+  }
   console.log(sum);
   return orders;
 };
-
 
 router.get("/time", async (req, res) => {
   const client = redis.createClient();
@@ -36,8 +37,8 @@ router.get("/time", async (req, res) => {
     if (cacheResults) {
       console.log("cached");
       results = JSON.parse(cacheResults);
-    } 
-    // If not in th Redis, go and get the data, 
+    }
+    // If not in th Redis, go and get the data,
     // then put it into redis before respons to client
     else {
       results = await heavy_compute();
@@ -55,28 +56,23 @@ router.get("/time", async (req, res) => {
 // Andy
 router.get("/acl", async (req, res) => {
   try {
-    const client = redis.createClient({
-      url: "redis://alan:alanpassword@127.0.0.1:6379",
-    });
+    const client = redis.createClient();
+    // const client = redis.createClient({
+    //   url: "redis://alan:alanpassword@127.0.0.1:6379",
+    // });
     await client.connect();
 
-    // const serverTime = await client.time();
-    // console.log(serverTime);
-    // console.log(await client.ACL_USERS());
-
-    if (!(await client.get("order_detail"))) {
-      await client.set("order_detail", JSON.stringify(orders), { EX: 3600 });
-    }
-    orderDetail = await client.get("order_detail");
-    results = JSON.parse(orderDetail);
-    res.json({ order: results });
-    // console.log(
-    //   `Response from GET command: ${await client.get("order_detail")}`
-    // );
+    // Since we only grant partial permission to authenticated user(Alan),
+    // Alan has no permission to access server related operation
+    // (e.g. configurate access control list) unless specified by admin user(s)
+    const serverTime = await client.time();
+    const users = await client.ACL_USERS();
 
     await client.quit();
+
+    res.json({ server_time: serverTime, user_list: users });
   } catch (error) {
-    console.log(`GET command failed: ${error.message}`);
+    res.status(403).send(`${error.message}`);
   }
 });
 
